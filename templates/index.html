@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Segmentation Analysis</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url('background.jpg') center center fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            height: 100vh;
+        }
+
+        .form-container,
+        .table-container {
+            padding: 20px;
+            display: inline-block;
+            width: 48%;
+            vertical-align: top;
+        }
+
+        .form-container {
+            border-right: 1px solid #ddd;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        label {
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 14px;
+            width: 48%;
+        }
+
+        input, select {
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        a {
+            margin-left: 8px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Customer Segmentation Analysis</h1>
+        <!-- Your form content here -->
+    </div>
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Region</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Occupation</th>
+                <th>Income</th>
+                <th>Products Purchased</th>
+                <th>Money Spent</th>
+                <th>Cluster</th>
+                <th>Actions</th>
+            </tr>
+            {% for customer in customers %}
+                <tr>
+                    <td>{{ customer.customer_id }}</td>
+                    <td>{{ customer.name }}</td>
+                    <td>{{ customer.region }}</td>
+                    <td>{{ customer.gender }}</td>
+                    <td>{{ customer.age }}</td>
+                    <td>{{ customer.occupation }}</td>
+                    <td>{{ customer.income }}</td>
+                    <td>{{ customer.products_purchased }}</td>
+                    <td>{{ customer.money_spent }}</td>
+                    <td>{{ customer.cluster }}</td>
+                    <td>
+                        <a href="{{ url_for('update_customer', customer_id=customer.customer_id) }}">Update</a>
+                        <a href="{{ url_for('delete_customer', customer_id=customer.customer_id) }}" onclick="return confirm('Are you sure you want to delete this customer?')">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
